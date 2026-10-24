@@ -38,15 +38,18 @@ Wrangler secret that never appears in code or logs). `scripts/qualify.ts` uses i
 
 | Task | Output | Status |
 |---|---|---|
-| Q1 plainAmount | `qualifier/Q1/` | produced by the endpoint, its 12 tests pass, checked by hand on extra edge cases |
+| Q1 plainAmount | `qualifier/Q1/` | to be produced again (see below) |
 | Q2 createPaidRoute | `qualifier/Q2/` | to be produced again (see below) |
 | Q3 lax-offer.json | `qualifier/Q3/` | to be produced again |
 | Q4 createLedger | `qualifier/Q4/` | to be produced again |
 | Q5 splitFees tests | `qualifier/Q5/` | to be produced again; `scripts/mutants.mjs` runs them against 17 planted bugs |
 
-Q2 to Q5 were produced and passed their own tests in earlier runs of this agent on 24 October 2026; the final run
-stopped after Q1 when the free daily Workers AI allocation (10,000 neurons) ran out, and those outputs were not kept,
-so nothing is committed for them until the endpoint answers again. Run: `OPERATOR_TOKEN=... npm run qualify -- Q2 Q3 Q4 Q5`.
+Status on 24 October 2026: earlier runs of this agent produced all five tasks; in those runs Q2 to Q5 passed their own
+tests and the Q5 tests caught 15 of the 17 planted bugs in `scripts/mutants.mjs` (the prompt was then improved for the
+two that survived). The last run produced Q1 with a correct `plainAmount` but one wrong expected value in its own tests
+(a very large amount), then stopped when the free daily Workers AI allocation (10,000 neurons) ran out. Since only
+outputs that pass are committed and none are edited by hand, `qualifier/` holds no output until the next full run:
+`OPERATOR_TOKEN=... npm run qualify`.
 
 Known limits, said plainly: answers come from one model with no test execution, so a wrong expected value can slip
 through the review round; the free model allocation limits how many paid jobs a day the endpoint can serve.
