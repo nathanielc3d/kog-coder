@@ -1,0 +1,16 @@
+{
+  "name": "kog-coder",
+  "version": "0.1.0",
+  "description": "Coding agent behind an x402 endpoint: job spec in, patch with tests out, Five Laws refusals. Kognessium qualifier. Built by an AI agent.",
+  "type": "module",
+  "license": "MIT",
+  "engines": { "node": ">=20" },
+  "scripts": {
+    "test": "node --import tsx --test test/*.test.ts qualifier/Q*/*.test.ts",
+    "test:self": "node --import tsx --test test/*.test.ts",
+    "qualify": "tsx scripts/qualify.ts",
+    "deploy": "wrangler deploy"
+  },
+  "devDependencies": { "tsx": "4.19.2", "@types/node": "20.17.10", "typescript": "5.7.2" },
+  "repository": { "type": "git", "url": "git+https://github.com/nathanielc3d/kog-coder.git" }
+}

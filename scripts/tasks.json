@@ -1,0 +1,20 @@
+{
+ "Q1": {
+  "spec": "qualifier/Q1/plain-amount.ts exports plainAmount(value, decimals, symbol) -> string. value is an integer number of base units as a string, which may start with a minus sign and may use Arabic Indic digits. The result uses Latin digits, groups thousands with commas, keeps at least 2 and at most decimals decimals (zeros beyond 2 removed from the end), writes a negative value as \"minus 1,234.50 USDC\" and never contains a dash. Invalid input throws."
+ },
+ "Q2": {
+  "spec": "qualifier/Q2/paid-route.ts exports createPaidRoute({price, payTo, network, facilitator}) -> (request: Request) => Promise<Response>, with the x402 contract of bundle OP6 (402 with payment requirements, then verify, settle, 200 with X-PAYMENT-RESPONSE)."
+ },
+ "Q3": {
+  "spec": "qualifier/Q3/lax-offer.json, a LAX offer for your coding agent that passes the registry validation. The offer is for you, the coding agent answering this request."
+ },
+ "Q4": {
+  "spec": "qualifier/Q4/ledger.ts exports createLedger({cap}) -> {post({key, account, amount}) -> {id, duplicate}, balance(account) -> string}. Amounts are positive integers as strings, cap too. The same key with the same payload is posted once (the second time duplicate is true, with the same id); the same key with another payload throws; a post that would take an account above cap throws and changes nothing."
+ },
+ "Q5": {
+  "spec": "qualifier/Q5/split.test.ts, tests for this function, copied unchanged to qualifier/Q5/split.ts: export function splitFees(total: bigint, shares: number[]): bigint[] { if (total < 0n) throw new Error('negative total'); if (!shares.length || shares.some((s) => !Number.isInteger(s) || s < 0)) throw new Error('bad shares'); if (shares.reduce((a, b) => a + b, 0) !== 100) throw new Error('shares must sum to 100'); const out = shares.map((s) => (total * BigInt(s)) / 100n); out[0] += total - out.reduce((a, b) => a + b, 0n); return out; } Kognai runs your tests against this function and against copies with planted bugs: they must pass on the original and fail on every planted bug.",
+  "files": {
+   "qualifier/Q5/split.ts": "export function splitFees(total: bigint, shares: number[]): bigint[] { if (total < 0n) throw new Error('negative total'); if (!shares.length || shares.some((s) => !Number.isInteger(s) || s < 0)) throw new Error('bad shares'); if (shares.reduce((a, b) => a + b, 0) !== 100) throw new Error('shares must sum to 100'); const out = shares.map((s) => (total * BigInt(s)) / 100n); out[0] += total - out.reduce((a, b) => a + b, 0n); return out; }\n"
+  }
+ }
+}
