@@ -6,7 +6,7 @@
   "license": "MIT",
   "engines": { "node": ">=20" },
   "scripts": {
-    "test": "node --import tsx --test test/*.test.ts qualifier/Q*/*.test.ts",
+    "test": "node scripts/test.mjs",
     "test:self": "node --import tsx --test test/*.test.ts",
     "qualify": "tsx scripts/qualify.ts",
     "deploy": "wrangler deploy"
